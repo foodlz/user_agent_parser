@@ -707,4 +707,84 @@ void main() {
       expect(actual, expected);
     });
   });
+
+  group('engine parsing', () {
+    test('parseEngine returns WebKit for iPhone', () {
+      final userAgent =
+          'Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.77 Mobile/15E148 Safari/604.1';
+      final actual = parser.parseEngine(userAgent);
+
+      expect(actual, isNotNull);
+      expect(actual!.name, 'WebKit');
+    });
+
+    test('parseEngine returns Gecko for Firefox', () {
+      final userAgent =
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:84.0) Gecko/20100101 Firefox/84.0';
+      final actual = parser.parseEngine(userAgent);
+
+      expect(actual, isNotNull);
+      expect(actual!.name, 'Gecko');
+    });
+  });
+
+  group('os parsing', () {
+    test('parseOS returns iOS for iPhone', () {
+      final userAgent =
+          'Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.77 Mobile/15E148 Safari/604.1';
+      final actual = parser.parseOS(userAgent);
+
+      expect(actual, isNotNull);
+      expect(actual!.name, 'iOS');
+    });
+
+    test('parseOS returns Windows for Windows NT', () {
+      final userAgent =
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36';
+      final actual = parser.parseOS(userAgent);
+
+      expect(actual, isNotNull);
+      expect(actual!.name, 'Windows');
+    });
+  });
+
+  group('device parsing', () {
+    test('parseDevice returns iPhone for iPhone user agent', () {
+      final userAgent =
+          'Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.77 Mobile/15E148 Safari/604.1';
+      final actual = parser.parseDevice(userAgent);
+
+      expect(actual, isNotNull);
+      expect(actual!.model, 'iPhone');
+    });
+
+    test('parseDevice returns Desktop for Windows', () {
+      final userAgent =
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36';
+      final actual = parser.parseDevice(userAgent);
+
+      expect(actual, isNotNull);
+      expect(actual!.type, 'desktop');
+    });
+  });
+
+  group('cpu parsing', () {
+    test('parseCPU returns ARM for iPhone', () {
+      final userAgent =
+          'Mozilla/5.0 (iPhone; CPU iPhone OS 14_3 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) CriOS/87.0.4280.77 Mobile/15E148 Safari/604.1';
+      final actual = parser.parseCPU(userAgent);
+
+      expect(actual, isNotNull);
+      expect(actual!.architecture, 'ARM');
+    });
+
+    test('parseCPU returns x64 for Windows', () {
+      final userAgent =
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36';
+      final actual = parser.parseCPU(userAgent);
+
+      expect(actual, isNotNull);
+      expect(actual!.architecture, 'x64');
+    });
+  });
 }

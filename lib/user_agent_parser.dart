@@ -1,39 +1,151 @@
 library user_agent_parser;
 
 import 'package:user_agent_parser/parsers/browser_parser.dart';
+import 'package:user_agent_parser/parsers/engine_parser.dart';
+import 'package:user_agent_parser/parsers/os_parser.dart';
+import 'package:user_agent_parser/parsers/device_parser.dart';
+import 'package:user_agent_parser/parsers/cpu_parser.dart';
 import 'package:user_agent_parser/results/browser.dart';
+import 'package:user_agent_parser/results/engine.dart';
+import 'package:user_agent_parser/results/os.dart';
+import 'package:user_agent_parser/results/device.dart';
+import 'package:user_agent_parser/results/cpu.dart';
 import 'package:user_agent_parser/results/result.dart';
 
 export 'package:user_agent_parser/results/browser.dart';
+export 'package:user_agent_parser/results/engine.dart';
+export 'package:user_agent_parser/results/os.dart';
+export 'package:user_agent_parser/results/device.dart';
+export 'package:user_agent_parser/results/cpu.dart';
 export 'package:user_agent_parser/results/result.dart';
+export 'package:user_agent_parser/helpers.dart';
 
 class UserAgentParser {
   /// Parse a [Result] from the [userAgent] string.
-  ///
-  /// TODO: Add other types (engine, os, device, cpu) into [Result]
   Result parseResult(String userAgent) {
     return Result(
       browser: parseBrowser(userAgent),
+      engine: parseEngine(userAgent),
+      os: parseOS(userAgent),
+      device: parseDevice(userAgent),
+      cpu: parseCPU(userAgent),
     );
   }
 
   /// Parse a [Browser] from the [userAgent] string.
   ///
   /// Returns `null` if no match.
-  Browser parseBrowser(String userAgent) {
+  Browser? parseBrowser(String userAgent) {
     for (BrowserParser browserParser in browserParsers) {
       for (String regex in browserParser.regexes) {
-        RegExp regExp = new RegExp(regex, caseSensitive: false);
+        RegExp regExp = RegExp(regex, caseSensitive: false);
 
         if (regExp.hasMatch(userAgent)) {
           Iterable<RegExpMatch> matches = regExp.allMatches(userAgent);
-          String unformattedName = matches.first.namedGroup('unformattedName');
-          String version = matches.first.namedGroup('version');
+          String unformattedName = matches.first.namedGroup('unformattedName')!;
+          String version = matches.first.namedGroup('version') ?? '';
 
           return Browser(
             name: browserParser.name,
             unformattedName: unformattedName,
             version: version,
+            type: browserParser.type,
+            parsedWithRegex: regex,
+          );
+        }
+      }
+    }
+
+    return null;
+  }
+
+  /// Parse an [Engine] from the [userAgent] string.
+  ///
+  /// Returns `null` if no match.
+  Engine? parseEngine(String userAgent) {
+    for (EngineParser engineParser in engineParsers) {
+      for (String regex in engineParser.regexes) {
+        RegExp regExp = RegExp(regex, caseSensitive: false);
+
+        if (regExp.hasMatch(userAgent)) {
+          Iterable<RegExpMatch> matches = regExp.allMatches(userAgent);
+          String unformattedName =
+              matches.first.namedGroup('unformattedName') ??
+                  engineParser.name.toLowerCase();
+          String version = matches.first.namedGroup('version') ?? '';
+
+          return Engine(
+            name: engineParser.name,
+            unformattedName: unformattedName,
+            version: version,
+            parsedWithRegex: regex,
+          );
+        }
+      }
+    }
+
+    return null;
+  }
+
+  /// Parse an [OS] from the [userAgent] string.
+  ///
+  /// Returns `null` if no match.
+  OS? parseOS(String userAgent) {
+    for (OSParser osParser in osParsers) {
+      for (String regex in osParser.regexes) {
+        RegExp regExp = RegExp(regex, caseSensitive: false);
+
+        if (regExp.hasMatch(userAgent)) {
+          Iterable<RegExpMatch> matches = regExp.allMatches(userAgent);
+          RegExpMatch match = matches.first;
+          String version = match.groupCount > 0 ? match.group(1)! : '';
+
+          return OS(
+            name: osParser.name,
+            unformattedName: osParser.name.toLowerCase(),
+            version: version,
+            parsedWithRegex: regex,
+          );
+        }
+      }
+    }
+
+    return null;
+  }
+
+  /// Parse a [Device] from the [userAgent] string.
+  ///
+  /// Returns `null` if no match.
+  Device? parseDevice(String userAgent) {
+    for (DeviceParser deviceParser in deviceParsers) {
+      for (String regex in deviceParser.regexes) {
+        RegExp regExp = RegExp(regex, caseSensitive: false);
+
+        if (regExp.hasMatch(userAgent)) {
+          return Device(
+            type: deviceParser.type,
+            vendor: deviceParser.vendor,
+            model: deviceParser.model,
+            parsedWithRegex: regex,
+          );
+        }
+      }
+    }
+
+    return null;
+  }
+
+  /// Parse a [CPU] from the [userAgent] string.
+  ///
+  /// Returns `null` if no match.
+  CPU? parseCPU(String userAgent) {
+    for (CPUParser cpuParser in cpuParsers) {
+      for (String regex in cpuParser.regexes) {
+        RegExp regExp = RegExp(regex, caseSensitive: false);
+
+        if (regExp.hasMatch(userAgent)) {
+          return CPU(
+            architecture: cpuParser.architecture,
             parsedWithRegex: regex,
           );
         }

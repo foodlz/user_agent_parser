@@ -1,13 +1,17 @@
 class BrowserParser {
   /// The browser name, set manually for a browser
-  String name;
+  final String name;
+
+  /// The browser type (e.g., 'browser', 'crawler', 'fetcher', 'cli', 'library')
+  final String? type;
 
   /// The list of regexes that can possibly parse this browser
-  List<String> regexes;
+  final List<String> regexes;
 
   BrowserParser({
-    this.name,
-    this.regexes,
+    required this.name,
+    this.type,
+    required this.regexes,
   });
 }
 
@@ -72,6 +76,113 @@ List<BrowserParser> browserParsers = [
     regexes: [
       r'(?<unformattedName>fxios)\/(?<version>[\w\.-]+)', // Firefox for iOS
       r'(?<unformattedName>firefox)\/(?<version>[\w\.-]+)$', // Firefox
+    ],
+  ),
+  // Bot/Crawler parsers
+  BrowserParser(
+    name: 'Googlebot',
+    type: 'crawler',
+    regexes: [
+      r'(?<unformattedName>googlebot)\/(?<version>[\w\.]+)',
+    ],
+  ),
+  BrowserParser(
+    name: 'Bingbot',
+    type: 'crawler',
+    regexes: [
+      r'(?<unformattedName>bingbot)\/(?<version>[\w\.]+)',
+    ],
+  ),
+  BrowserParser(
+    name: 'Slurp',
+    type: 'crawler',
+    regexes: [
+      r'(?<unformattedName>slurp)',
+    ],
+  ),
+  BrowserParser(
+    name: 'DuckDuckBot',
+    type: 'crawler',
+    regexes: [
+      r'(?<unformattedName>duckduckbot)\/(?<version>[\w\.]+)',
+    ],
+  ),
+  BrowserParser(
+    name: 'Baiduspider',
+    type: 'crawler',
+    regexes: [
+      r'(?<unformattedName>baiduspider)\/(?<version>[\w\.]+)',
+    ],
+  ),
+  BrowserParser(
+    name: 'YandexBot',
+    type: 'crawler',
+    regexes: [
+      r'(?<unformattedName>yandexbot)\/(?<version>[\w\.]+)',
+    ],
+  ),
+  BrowserParser(
+    name: 'Sogou Spider',
+    type: 'crawler',
+    regexes: [
+      r'(?<unformattedName>sogou\sweb\spider)\/(?<version>[\w\.]+)',
+    ],
+  ),
+  BrowserParser(
+    name: 'Exabot',
+    type: 'crawler',
+    regexes: [
+      r'(?<unformattedName>exabot)\/(?<version>[\w\.]+)',
+    ],
+  ),
+  BrowserParser(
+    name: 'facebookexternalhit',
+    type: 'crawler',
+    regexes: [
+      r'(?<unformattedName>facebookexternalhit)\/(?<version>[\w\.]+)',
+    ],
+  ),
+  BrowserParser(
+    name: 'Twitterbot',
+    type: 'crawler',
+    regexes: [
+      r'(?<unformattedName>twitterbot)\/(?<version>[\w\.]+)',
+    ],
+  ),
+  BrowserParser(
+    name: 'LinkedInBot',
+    type: 'crawler',
+    regexes: [
+      r'(?<unformattedName>linkedinbot)\/(?<version>[\w\.]+)',
+    ],
+  ),
+  BrowserParser(
+    name: 'WhatsApp',
+    type: 'fetcher',
+    regexes: [
+      r'(?<unformattedName>whatsapp)\/(?<version>[\w\.]+)',
+    ],
+  ),
+  BrowserParser(
+    name: 'curl',
+    type: 'cli',
+    regexes: [
+      r'(?<unformattedName>curl)\/(?<version>[\w\.]+)',
+    ],
+  ),
+  BrowserParser(
+    name: 'wget',
+    type: 'cli',
+    regexes: [
+      r'(?<unformattedName>wget)\/(?<version>[\w\.]+)',
+    ],
+  ),
+  // Custom app parsers
+  BrowserParser(
+    name: 'Foodlz',
+    type: 'mobile',
+    regexes: [
+      r'(?<unformattedName>foodlz)(?:\/(?<version>[\w\.]+))?',
     ],
   ),
 ];

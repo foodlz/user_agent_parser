@@ -1,38 +1,33 @@
-class Browser {
-  /// The browser name, set manually for a browser
+class Engine {
+  /// The engine name, set manually for an engine
   final String name;
 
-  /// The browser name, parsed directly from the user agent string without modification
+  /// The engine name, parsed directly from the user agent string without modification
   final String unformattedName;
 
-  /// The browser version
+  /// The engine version
   final String version;
 
-  /// The browser type (e.g., 'browser', 'crawler', 'fetcher', 'cli', 'library')
-  final String? type;
-
-  /// The regex that was used to parse this browser
+  /// The regex that was used to parse this engine
   final String parsedWithRegex;
 
-  Browser({
+  Engine({
     required this.name,
     required this.unformattedName,
     required this.version,
-    this.type,
     required this.parsedWithRegex,
   });
 
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is Browser &&
+      other is Engine &&
           runtimeType == other.runtimeType &&
           name == other.name &&
           unformattedName == other.unformattedName &&
           version == other.version &&
-          type == other.type &&
           parsedWithRegex == other.parsedWithRegex;
 
   @override
-  int get hashCode => name.hashCode ^ version.hashCode ^ type.hashCode;
+  int get hashCode => name.hashCode ^ version.hashCode;
 }
