@@ -1,15 +1,25 @@
-# user_agent_parser
+# user_agent_parser_plus
 
-A Flutter-based User-Agent string parser. This package aims to identify the type of web browser, engine, operating system, device, and CPU entirely from a User-Agent string.
+An enhanced Flutter-based User-Agent string parser with comprehensive bot detection and custom app support. This package aims to identify web browsers, engines, operating systems, devices, CPUs, and bots entirely from a User-Agent string.
 
 **Requires Dart 3.0+**
+
+## About
+
+This package is an enhanced fork of the original [user_agent_parser](https://pub.dev/packages/user_agent_parser) package, with the following improvements:
+
+- ✅ **Comprehensive bot detection** - Recognizes major search engine crawlers, social media bots, and automated tools
+- ✅ **Helper functions** - Easy-to-use functions like `isBot()`, `isMobile()`, `isDesktop()`
+- ✅ **Custom app support** - Built-in parser for Flutter mobile apps (like "Foodlz")
+- ✅ **Enhanced browser detection** - Support for 15+ additional browsers and variants
+- ✅ **Null safety** - Fully migrated to Dart's null safety features
 
 Inspired by [ua-parser-js](https://www.npmjs.com/package/ua-parser-js)
 
 ## Usage
 Import the package.
 ```dart
-import 'package:user_agent_parser/user_agent_parser.dart';
+import 'package:user_agent_parser_plus/user_agent_parser_plus.dart';
 ```
 
 Create a `UserAgentParser` and parse comprehensive information.
@@ -36,3 +46,11 @@ OS? os = parser.parseOS(userAgent);
 Device? device = parser.parseDevice(userAgent);
 CPU? cpu = parser.parseCPU(userAgent);
 ```
+
+## Attribution
+
+This package is a fork and enhancement of the original [user_agent_parser](https://pub.dev/packages/user_agent_parser) package. All credit for the original implementation goes to the original author.
+
+## License
+
+This project is licensed under the same MIT License as the original package.

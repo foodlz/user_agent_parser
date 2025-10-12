@@ -1,8 +1,8 @@
 /// Helper functions for user agent parsing
 library helpers;
 
-import 'package:user_agent_parser/results/browser.dart';
-import 'package:user_agent_parser/results/device.dart';
+import 'package:user_agent_parser_plus/results/browser.dart';
+import 'package:user_agent_parser_plus/results/device.dart';
 
 /// Check if a browser is a bot/crawler
 bool isBot(Browser? browser) {

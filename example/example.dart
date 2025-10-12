@@ -1,4 +1,4 @@
-import 'package:user_agent_parser/user_agent_parser.dart';
+import 'package:user_agent_parser_plus/user_agent_parser_plus.dart';
 
 void main() {
   UserAgentParser parser = UserAgentParser();

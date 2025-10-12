@@ -1,24 +1,24 @@
 library user_agent_parser;
 
-import 'package:user_agent_parser/parsers/browser_parser.dart';
-import 'package:user_agent_parser/parsers/engine_parser.dart';
-import 'package:user_agent_parser/parsers/os_parser.dart';
-import 'package:user_agent_parser/parsers/device_parser.dart';
-import 'package:user_agent_parser/parsers/cpu_parser.dart';
-import 'package:user_agent_parser/results/browser.dart';
-import 'package:user_agent_parser/results/engine.dart';
-import 'package:user_agent_parser/results/os.dart';
-import 'package:user_agent_parser/results/device.dart';
-import 'package:user_agent_parser/results/cpu.dart';
-import 'package:user_agent_parser/results/result.dart';
+import 'package:user_agent_parser_plus/parsers/browser_parser.dart';
+import 'package:user_agent_parser_plus/parsers/engine_parser.dart';
+import 'package:user_agent_parser_plus/parsers/os_parser.dart';
+import 'package:user_agent_parser_plus/parsers/device_parser.dart';
+import 'package:user_agent_parser_plus/parsers/cpu_parser.dart';
+import 'package:user_agent_parser_plus/results/browser.dart';
+import 'package:user_agent_parser_plus/results/engine.dart';
+import 'package:user_agent_parser_plus/results/os.dart';
+import 'package:user_agent_parser_plus/results/device.dart';
+import 'package:user_agent_parser_plus/results/cpu.dart';
+import 'package:user_agent_parser_plus/results/result.dart';
 
-export 'package:user_agent_parser/results/browser.dart';
-export 'package:user_agent_parser/results/engine.dart';
-export 'package:user_agent_parser/results/os.dart';
-export 'package:user_agent_parser/results/device.dart';
-export 'package:user_agent_parser/results/cpu.dart';
-export 'package:user_agent_parser/results/result.dart';
-export 'package:user_agent_parser/helpers.dart';
+export 'package:user_agent_parser_plus/results/browser.dart';
+export 'package:user_agent_parser_plus/results/engine.dart';
+export 'package:user_agent_parser_plus/results/os.dart';
+export 'package:user_agent_parser_plus/results/device.dart';
+export 'package:user_agent_parser_plus/results/cpu.dart';
+export 'package:user_agent_parser_plus/results/result.dart';
+export 'package:user_agent_parser_plus/helpers.dart';
 
 class UserAgentParser {
   /// Parse a [Result] from the [userAgent] string.
