@@ -1,6 +1,6 @@
 name: user_agent_parser_plus
 description: An enhanced Flutter User-Agent parser with comprehensive bot detection, custom app support, and helper functions.
-version: 1.0.0
+version: 1.0.1
 homepage: https://github.com/foodlz/user_agent_parser
 repository: https://github.com/foodlz/user_agent_parser
 issue_tracker: https://github.com/foodlz/user_agent_parser/issues

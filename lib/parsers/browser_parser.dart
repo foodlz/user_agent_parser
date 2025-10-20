@@ -53,6 +53,18 @@ List<BrowserParser> browserParsers = [
     ],
   ),
   BrowserParser(
+    name: 'Brave',
+    regexes: [
+      r'(?<unformattedName>brave)\/(?<version>[\w\.]+)', // Brave browser
+    ],
+  ),
+  BrowserParser(
+    name: 'Samsung Internet',
+    regexes: [
+      r'(?<unformattedName>samsungbrowser)\/(?<version>[\w\.]+)', // Samsung Internet
+    ],
+  ),
+  BrowserParser(
     name: 'Chrome',
     regexes: [
       r'(?<unformattedName>chrome)\/v?(?<version>[\w\.]+)', // Chrome

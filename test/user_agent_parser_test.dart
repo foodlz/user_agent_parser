@@ -708,6 +708,68 @@ void main() {
     });
   });
 
+  group('brave browser', () {
+    test('windows', () {
+      final userAgent =
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Brave/91.1.26.0';
+      final actual = parser.parseBrowser(userAgent);
+      final expected = Browser(
+        name: 'Brave',
+        unformattedName: 'Brave',
+        version: '91.1.26.0',
+        parsedWithRegex: r'(?<unformattedName>brave)\/(?<version>[\w\.]+)',
+      );
+
+      expect(actual, expected);
+    });
+
+    test('macOS', () {
+      final userAgent =
+          'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Brave/91.1.26.0';
+      final actual = parser.parseBrowser(userAgent);
+      final expected = Browser(
+        name: 'Brave',
+        unformattedName: 'Brave',
+        version: '91.1.26.0',
+        parsedWithRegex: r'(?<unformattedName>brave)\/(?<version>[\w\.]+)',
+      );
+
+      expect(actual, expected);
+    });
+  });
+
+  group('samsung internet browser', () {
+    test('android', () {
+      final userAgent =
+          'Mozilla/5.0 (Linux; Android 10; SM-G975F) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/12.0 Chrome/79.0.3945.136 Mobile Safari/537.36';
+      final actual = parser.parseBrowser(userAgent);
+      final expected = Browser(
+        name: 'Samsung Internet',
+        unformattedName: 'SamsungBrowser',
+        version: '12.0',
+        parsedWithRegex:
+            r'(?<unformattedName>samsungbrowser)\/(?<version>[\w\.]+)',
+      );
+
+      expect(actual, expected);
+    });
+
+    test('android tablet', () {
+      final userAgent =
+          'Mozilla/5.0 (Linux; Android 11; SM-T870) AppleWebKit/537.36 (KHTML, like Gecko) SamsungBrowser/13.2 Chrome/83.0.4103.106 Safari/537.36';
+      final actual = parser.parseBrowser(userAgent);
+      final expected = Browser(
+        name: 'Samsung Internet',
+        unformattedName: 'SamsungBrowser',
+        version: '13.2',
+        parsedWithRegex:
+            r'(?<unformattedName>samsungbrowser)\/(?<version>[\w\.]+)',
+      );
+
+      expect(actual, expected);
+    });
+  });
+
   group('engine parsing', () {
     test('parseEngine returns WebKit for iPhone', () {
       final userAgent =
