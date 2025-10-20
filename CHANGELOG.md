@@ -1,3 +1,9 @@
+## [1.0.1] - 2025-10-20
+
+- Add support for Brave browser detection
+- Add support for Samsung Internet browser detection
+- Add comprehensive test coverage for Brave and Samsung Internet browsers
+
 ## [1.0.0] - 2025-10-12
 
 - Upgrade to Dart 3 compatibility with null safety
