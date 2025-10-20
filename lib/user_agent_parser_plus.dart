@@ -1,3 +1,30 @@
+/// A comprehensive Dart library for parsing user agent strings.
+///
+/// This library provides detailed information about browsers, operating systems,
+/// devices, engines, and CPUs from user agent strings. It supports detection
+/// of modern browsers, bots, crawlers, and custom applications.
+///
+/// Features:
+/// - Browser detection (Chrome, Firefox, Safari, Edge, Brave, Samsung Internet, etc.)
+/// - Operating system identification (Windows, macOS, Linux, Android, iOS, etc.)
+/// - Device type detection (mobile, tablet, desktop)
+/// - Bot and crawler recognition (Googlebot, Bingbot, etc.)
+/// - Custom app support (Foodlz, etc.)
+/// - Helper functions for quick type checking
+///
+/// Example usage:
+/// ```dart
+/// import 'package:user_agent_parser_plus/user_agent_parser_plus.dart';
+///
+/// void main() {
+///   final parser = UserAgentParser();
+///   final result = parser.parse('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...');
+///
+///   print('Browser: ${result.browser?.name}');
+///   print('OS: ${result.os?.name}');
+///   print('Is mobile: ${parser.isMobile(result)}');
+/// }
+/// ```
 library user_agent_parser;
 
 import 'package:user_agent_parser_plus/parsers/browser_parser.dart';

@@ -1,3 +1,8 @@
+/// Defines a browser parser configuration for matching user agent strings.
+///
+/// Contains the browser name, optional type classification, and a list of
+/// regular expressions used to identify and extract browser information
+/// from user agent strings.
 class BrowserParser {
   /// The browser name, set manually for a browser
   final String name;

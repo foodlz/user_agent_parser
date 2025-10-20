@@ -1,3 +1,7 @@
+/// Represents a parsed browser from a user agent string.
+///
+/// Contains information about the browser including its name, version,
+/// type (browser, crawler, etc.), and the regex pattern used for parsing.
 class Browser {
   /// The browser name, set manually for a browser
   final String name;
